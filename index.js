@@ -52,6 +52,13 @@ async function run(){
       const result = await orderCollection.insertOne(order);
       res.json(result)
     })
+    app.put('/orders', async (req, res) => {
+      const id = req.body;
+      const filter={_id: ObjectId(id)}
+      const updateDoc = {$set: {action:'shiped'}}
+      const result = await orderCollection.updateOne(filter,updateDoc);
+      res.json(result)
+    })
     app.delete('/orders/:id', async (req, res) => {
       const id = req.params.id;
       const query = {_id: ObjectId(id)};
