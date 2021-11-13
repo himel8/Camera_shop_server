@@ -21,6 +21,7 @@ async function run(){
     const productCollection = database.collection("products");
     const orderCollection = database.collection("all_orders");
     const userCollection = database.collection("users");
+    const reviewCollection = database.collection("reviews");
 
     app.get('/products', async (req, res) => {
       const cursor = productCollection.find({});
@@ -84,6 +85,11 @@ async function run(){
       const filter={email: user.email}
       const updateDoc = {$set: {role:'admin'}}
       const result = await userCollection.updateOne(filter,updateDoc);
+      res.json(result)
+    })
+    app.post('/reviews', async (req, res) => {
+      const user = req.body;
+      const result = await reviewCollection.insertOne(user);
       res.json(result)
     })
   }
