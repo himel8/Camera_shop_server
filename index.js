@@ -87,6 +87,11 @@ async function run(){
       const result = await userCollection.updateOne(filter,updateDoc);
       res.json(result)
     })
+    app.get('/reviews', async (req, res) => {
+      const cursor = reviewCollection.find({});
+      const reviews = await cursor.toArray();
+      res.json(reviews)
+    })
     app.post('/reviews', async (req, res) => {
       const user = req.body;
       const result = await reviewCollection.insertOne(user);
