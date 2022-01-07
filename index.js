@@ -112,7 +112,7 @@ async function run(){
       res.json(result)
     })
     
-
+// payment gateway
 app.post("/payment", (req, res) => {
   stripe.charges.create(
     {
