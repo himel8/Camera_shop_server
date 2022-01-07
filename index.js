@@ -114,6 +114,7 @@ async function run(){
     
 // payment gateway
 app.post("/payment", (req, res) => {
+  console.log(req.body)
   stripe.charges.create(
     {
       source: req.body.tokenId,
@@ -129,9 +130,6 @@ app.post("/payment", (req, res) => {
     }
   );
 });
-
-module.exports = router;
-
   }
     
   finally{
